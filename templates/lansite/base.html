@@ -1,0 +1,30 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="{% static 'lansite/style.css' %}" rel="stylesheet" type="text/css" />
+	{% block css %}{% endblock css %}
+	
+	{% block scripts %}{% endblock scripts %}
+	<script type="text/javascript">{% block extra-js %}{% endblock extra-js%}</script>
+
+	<title>{% block title %}This shouldn't exist!{% endblock title %}</title>
+</head>
+<body>
+
+<div id="header">
+	{% block header %}{% endblock header %}
+</div>
+
+<div id="content">
+	{% block content %}You shouldn't see this!{% endblock content %}
+</div>
+
+<div id="footer">
+	{% block footer %}{% endblock footer %}
+</div>
+
+</body>
+</html>
+

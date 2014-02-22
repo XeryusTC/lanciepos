@@ -1,0 +1,16 @@
+modulair systeem
+
+betaalsystemen:
+	paypal?
+	cash
+
+HARDE EIS
+eten bestellen - plannen, moeten mensen het kunnen reserveren en hoe?
+	moet er website integratie bij komen?
+	deadline om avondeten te bestellen
+
+happy our producten mogelijk maken
+
+QR codes gebruiken om klanten identificeren
+
+touchscreen friendly (zachte eis)

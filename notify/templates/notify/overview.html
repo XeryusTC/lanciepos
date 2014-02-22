@@ -1,0 +1,23 @@
+{% extends 'notify/base.html' %}
+{% load staticfiles %}
+
+{% block scripts %}
+	{{ block.super }}
+    <script text="text/javascript" src="{% url 'javascript' 'notify' 'notify' %}"></script>
+{% endblock scripts %}
+
+{% block content %}
+
+{% for notification in notification_list %}
+    <div class="{% cycle 'row1' 'row2' %}">
+        <div class="title">{{ notification.pub_date|date:"l H:i" }}</div>
+        {{ notification.content }}
+    </div>
+{% endfor %}
+
+<audio id="sound" preload="preload">
+    <source src="{% static 'notify/alarm.mp3' %}" type="audio/mp3">
+    <source src="{% static 'notify/message.oga' %}" type="audio/ogg;">
+</audio>
+
+{% endblock content %}

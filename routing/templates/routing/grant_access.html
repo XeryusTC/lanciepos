@@ -1,0 +1,41 @@
+{% extends 'routing/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<h1>Grant internet access</h1>
+
+<a href="{% static 'routing/rules.pdf' %}" target="_blank">Open the rules for printing.</a>
+{% if error_message %}
+	<div id="error">
+	<h2>Error</h2>
+	{% if error_message == "ipaddressinvalid" %}
+		The IP address was mangled, this shouldn't really happen so it might be best to call an admin or let the visitor re-enter the ip address.
+	{% elif error_message == "iptables_fail" %}
+		Something went wrong with whitelisting the user. Call an admin!
+	{% else %}
+		Unknown error occured: {{ error_message }}
+	{% endif %}
+	</div>
+{% endif %}
+
+<h2>People who have requested access</h2
+
+<p>If a name is red that means that this person hasn't signed the rules yet and 
+should do so before receiving internet access. If the name is green then the 
+person has signed the rules and everything is OK and access can be granted.</p>
+<p><strong>Warning:</strong> make sure you are granting access to the right 
+person!</p>
+
+<ul class="visitorlist">
+{% for client in object_list %}
+	<li {% if not client.rule_signed %} class="norules" {% endif %}>
+	{{ client.user.get_full_name }} - {{ client.ipaddress }}<br />
+	{% if not client.rule_signed %}
+		Visitor has not yet signed the rules. <a href="{% static 'routing/rules.pdf' %}" target="_blank">Click to print rules</a>
+	{% endif %}
+		<form action="{% url 'routing:grant_access' client.id %}" method="post">{% csrf_token %}<input type="submit" value="Grant access" /></form>
+	</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}

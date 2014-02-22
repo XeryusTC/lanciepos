@@ -1,0 +1,12 @@
+.visitorlist {
+	list-style: none;
+}
+
+.visitorlist li {
+	background-color: #9f9;
+	padding: 2px;
+}
+
+li.norules {
+	background-color: #f99;
+}

@@ -1,0 +1,10 @@
+{% extends 'lansite/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <link href="{% static 'notify/style.css' %}" rel="stylesheet" type="text/css" />
+{% endblock css %}
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'notify/jquery.js' %}"></script>
+{% endblock scripts %}
+{% block title %}Notifications{% endblock title %}

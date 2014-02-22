@@ -1,0 +1,17 @@
+{% extends 'routing/base.html' %}
+
+{% block content %}
+<h1>Request internet access</h1>
+
+To get internet access you need to do the following things:
+<ol>
+	<li>Enter your e-mail address below.</li>
+	<li>Sign the rules at the bar.</li>
+</ol>
+
+<form action="{% url 'routing:request_access' %}" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Submit" />
+</form>
+{% endblock content %}
