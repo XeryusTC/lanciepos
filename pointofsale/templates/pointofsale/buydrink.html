@@ -1,0 +1,24 @@
+{% extends 'pointofsale/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+{{ drinks.Beer }}
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.drink.choices }}
+    {% for field in form.drink %}
+        <div>
+            {{ field.errors }}
+            {{ field.tag }} {{ field.choice_label }}
+            {% for key, value in drinks.items %}
+                {% if key == field.choice_label %}
+                    {{ value }} &#8359;
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <input type="submit" value="Buy" />
+</form>
+
+{% endblock content%}

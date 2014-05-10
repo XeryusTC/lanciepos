@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^notify/', include('notify.urls', namespace="notify")),
     url(r'^notification/', include('notify.urls')),
     url(r'^routing/', include('routing.urls', namespace="routing")),
+    url(r'^bar/', include('pointofsale.urls', namespace="pos")),
     url(r'^$', RequestAccessView.as_view(), name='index'),
     url(r'js/([\w\.\-]+)/([\w\.\-]+).js$', 'lansite.views.javascript', name='javascript'),
 )

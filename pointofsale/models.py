@@ -68,6 +68,7 @@ class Account(models.Model):
 	credits = models.IntegerField(default=0)
 	qr_code = models.CharField(max_length=16, blank=True)
 	qr_code.verbose_name = 'QR code'
+	#rules_signed = models.BooleanField(default=False)
 	
 	# allow buying stuff
 	drinks_bought = models.ManyToManyField(Drink, through='DrinkOrder')
