@@ -1,28 +1,24 @@
 {% extends 'pointofsale/base.html' %}
 {% load staticfiles %}
 
-<form action="" method="post">{% csrf_token %}
-
-{% block header %}
+{% block content %}
+<form action="buydrink" method="post">{% csrf_token %}
 <div id="drinks">
     <input type="submit" value="Buy" />
     {% for drink in form.drink %}
         <div class="drink">
-            {{ drink.tag }}
             <label for="drink_{{ forloop.counter0 }}"> {{ drink.choice_label }}
             {% for key, value in drinks.items %}
                 {% if key == drink.choice_label %}
                     ({{ value }} &#8359;)
                 {% endif %}
             {% endfor %}
-            </label>
+            </label>{{ drink.tag }}
         </div>
     {% endfor %}
     
 </div>
-{% endblock header %}
 
-{% block content %}
 <div id="accounts">
 <table>
     <tr>

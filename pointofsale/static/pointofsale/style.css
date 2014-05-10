@@ -3,24 +3,19 @@ body {
     margin: 0px;
 }
 
-#header {
-    width: 100%;
-    position: fixed;
-    top: 0px;
-    z-index: 10000;
-}
-
 #drinks {
     background: gray;
     width: 99%;
     height: 100px;
-    padding: 5px;
+    padding: 5px;position: fixed;
+    top: 0px;
+    z-index: 10000;
 }
 
 #accounts {
-    overflow: auto;
     position: absolute;
-    width: 100%;
+    left: 0px;
+    right: 200px;
     top: 120px;
     bottom: 0px;
 }
