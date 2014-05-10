@@ -2,9 +2,10 @@
 {% load staticfiles %}
 
 {% block content %}
-<form action="buydrink" method="post">{% csrf_token %}
+<form action="{% url 'pos:buy_action' %}" method="post">{% csrf_token %}
 <div id="drinks">
-    <input type="submit" value="Buy" />
+    <input type="submit" value="Buy" id="buy" />
+    
     {% for drink in form.drink %}
         <div class="drink">
             <label for="drink_{{ forloop.counter0 }}"> {{ drink.choice_label }}

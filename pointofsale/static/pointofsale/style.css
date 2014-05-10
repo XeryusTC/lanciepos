@@ -3,11 +3,14 @@ body {
     margin: 0px;
 }
 
+/* GENERAL LAYOUT STUFF */
+
 #drinks {
-    background: gray;
-    width: 99%;
+    background: #999;
+    width: 100%;
     height: 100px;
-    padding: 5px;position: fixed;
+    padding: 5px;
+    position: fixed;
     top: 0px;
     z-index: 10000;
 }
@@ -20,9 +23,69 @@ body {
     bottom: 0px;
 }
 
+/* DRINKS MENU AT TOP OF PAGE */
+
 div.drink {
-   display: inline;
+   background: #CCC;
+   display: inline-block;
+   margin: 2px;
+   padding: 5px;
 }
+
+div.drink.selected {
+    background: #CFC;
+}
+
+div.drink input {
+    display: none;
+}
+
+#buy {
+    height: 100px;
+    width: 100px;
+    float: right;
+    margin-right: 20px;
+    
+    background: #FCC;
+    border: 1px solid #FCC;
+    font-weight: bold;
+}
+
+#buy:active {
+    position: relative;
+    top: 2px;
+    left: 1px;
+}
+
+.buy {
+border: 1px solid #FFCCCC;
+text-shadow: 1px 1px 2px #000000;
+font-weight: bold;
+margin: 5px 5px;
+padding: 6px 6px;
+color: #000000;
+letter-spacing: 1px;
+font-family: 'Arial', sans-serif;
+font-size: 16px;
+width: 150px;
+text-transform: capitalize;
+text-align: center;
+text-decoration: none;
+cursor: pointer;
+display: inline-block;
+}
+.buy:hover {
+background: -webkit-gradient( linear, left top, left bottom, color-stop(0, #FFCCCC), color-stop(0.51, #FFCCCC) );
+background: -moz-linear-gradient( center top, #FFCCCC 0%, #FFCCCC 51% );
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFCCCC', endColorstr='#FFCCCC');
+background-color: #FFCCCC;
+}
+.buy:active {
+position: relative;
+top: 1px;
+left: 0px;
+}
+
 
 /* ACCOUNTS TABLE */
 
@@ -35,11 +98,11 @@ table input {
 }
 
 tr.user.row1 {
-    background: #AAA;
+    background: #BBB;
 }
 
 tr.user.row2 {
-    background: #CCC;
+    background: #DDD;
 }
 
 tr.user.selected {

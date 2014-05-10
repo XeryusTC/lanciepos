@@ -10,4 +10,4 @@ class BuyDrinkForm(forms.Form):
         super(BuyDrinkForm, self).__init__(*args, **kwargs)
         
         self.fields['drink'].choices = ( (drink.pk, drink.name) for drink in Drink.objects.all() )
-        self.fields['account'].choices = ( (account.pk, account.pk) for account in Account.objects.all() if account.get_credits_left() > 0)
+        self.fields['account'].choices = ( (account.pk, account.pk) for account in Account.objects.order_by('user__first_name') if account.get_credits_left() > 0)

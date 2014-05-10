@@ -16,12 +16,22 @@ $(document).ready(function() {
         $(this).find('input:radio').prop('checked', true);
         $(this).find('input:radio').change();
     });
-    
-    $("#accounts input:radio").css("border", "1px solid black");
-    
+    // Change the color of the person that has been selected
     $("#accounts input:radio").change(function() {
         $("#accounts tr").removeClass("selected");
         $(this).parents("tr").addClass("selected");
+    });
+    
+    // Change the color of the drink that has been selected
+    $("#drinks input:radio").change(function() {
+        $("#drinks div.drink").removeClass("selected");
+        $(this).parent("div.drink").addClass("selected");
+    });
+    
+    $("input:radio").each(function() {
+        if ($(this).prop("checked")) {
+            $(this).change();
+        }
     });
 });
 
