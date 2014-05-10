@@ -57,36 +57,6 @@ div.drink input {
     left: 1px;
 }
 
-.buy {
-border: 1px solid #FFCCCC;
-text-shadow: 1px 1px 2px #000000;
-font-weight: bold;
-margin: 5px 5px;
-padding: 6px 6px;
-color: #000000;
-letter-spacing: 1px;
-font-family: 'Arial', sans-serif;
-font-size: 16px;
-width: 150px;
-text-transform: capitalize;
-text-align: center;
-text-decoration: none;
-cursor: pointer;
-display: inline-block;
-}
-.buy:hover {
-background: -webkit-gradient( linear, left top, left bottom, color-stop(0, #FFCCCC), color-stop(0.51, #FFCCCC) );
-background: -moz-linear-gradient( center top, #FFCCCC 0%, #FFCCCC 51% );
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFCCCC', endColorstr='#FFCCCC');
-background-color: #FFCCCC;
-}
-.buy:active {
-position: relative;
-top: 1px;
-left: 0px;
-}
-
-
 /* ACCOUNTS TABLE */
 
 table {
