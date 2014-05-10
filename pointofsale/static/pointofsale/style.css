@@ -1,0 +1,65 @@
+body {
+    background: white;
+    margin: 0px;
+}
+
+#header {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 10000;
+}
+
+#drinks {
+    background: gray;
+    width: 99%;
+    height: 100px;
+    padding: 5px;
+}
+
+#accounts {
+    overflow: auto;
+    position: absolute;
+    width: 100%;
+    top: 120px;
+    bottom: 0px;
+}
+
+div.drink {
+   display: inline;
+}
+
+/* ACCOUNTS TABLE */
+
+table {
+    width: 100%;
+}
+
+table input {
+    display: none;
+}
+
+tr.user.row1 {
+    background: #AAA;
+}
+
+tr.user.row2 {
+    background: #CCC;
+}
+
+tr.user.selected {
+    background: #CFC;
+}
+
+.selected td.checkbox {
+    background: #5F5;
+}
+
+td.name {
+    width: *;
+}
+
+td.number {
+    text-align: right;
+    width: 75px;
+}

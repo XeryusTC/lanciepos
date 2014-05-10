@@ -18,9 +18,9 @@ class BuyDrinkView(edit.FormView):
         for drink in Drink.objects.all():
             context['drinks'][drink.name] = drink.price
         
-        context['users'] = {}
+        context['accounts'] = {}
         for account in Account.objects.all():
             if account.get_credits_left() > 0:
-                context['users'][account.pk] = (account.credits, account.get_credits_used())
+                context['accounts'][account.pk] = {'credits': account.credits, 'used': account.get_credits_used(), 'left': account.get_credits_left(), 'name': account.user.get_full_name() }
         
         return context

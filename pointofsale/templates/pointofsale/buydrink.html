@@ -1,24 +1,53 @@
 {% extends 'pointofsale/base.html' %}
 {% load staticfiles %}
 
-{% block content %}
-
-{{ drinks.Beer }}
-
 <form action="" method="post">{% csrf_token %}
-    {{ form.drink.choices }}
-    {% for field in form.drink %}
-        <div>
-            {{ field.errors }}
-            {{ field.tag }} {{ field.choice_label }}
+
+{% block header %}
+<div id="drinks">
+    <input type="submit" value="Buy" />
+    {% for drink in form.drink %}
+        <div class="drink">
+            {{ drink.tag }}
+            <label for="drink_{{ forloop.counter0 }}"> {{ drink.choice_label }}
             {% for key, value in drinks.items %}
-                {% if key == field.choice_label %}
-                    {{ value }} &#8359;
+                {% if key == drink.choice_label %}
+                    ({{ value }} &#8359;)
                 {% endif %}
             {% endfor %}
+            </label>
         </div>
     {% endfor %}
-    <input type="submit" value="Buy" />
+    
+</div>
+{% endblock header %}
+
+{% block content %}
+<div id="accounts">
+<table>
+    <tr>
+        <td></td>
+        <th>Name</th>
+        <th>&#8359;</th>
+        <th>&#8359; spend</th>
+        <th>&#8359; left</th>
+    </tr>
+{% for account in form.account %}
+    {% for key, info in accounts.items %}
+        {% if key|lower == account.choice_label|lower %}
+            <tr class="user {% cycle 'row1' 'row2' %}">
+                <td class="checkbox">{{ account.tag }}</td>
+                <td class="name"><label for="account_{{ forloop.counter0 }}">{{ info.name }}</label></td>
+                <td class="number"><label for="account_{{ forloop.counter0 }}">{{ info.credits }}</label></td>
+                <td class="number"><label for="account_{{ forloop.counter0 }}">{{ info.used }}</label></td>
+                <td class="number"><label for="account_{{ forloop.counter0 }}">{{ info.left }}</label></td>
+            </tr>
+        {% endif %}
+    {% endfor %}    
+{% endfor %}
+</table>
+</div>
+
 </form>
 
 {% endblock content%}

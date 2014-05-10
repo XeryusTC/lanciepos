@@ -4,5 +4,11 @@
 {% block css %}
 	<link href="{% static 'pointofsale/style.css' %}" rel="stylesheet" type="text/css" />
 {% endblock css %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'pointofsale/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pointofsale/pointofsale.js' %}"></script>
+{% endblock scripts %}
+
 {% block title %}Point of Sale{% endblock title %}
 
