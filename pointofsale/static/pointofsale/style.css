@@ -23,6 +23,13 @@ body {
     bottom: 0px;
 }
 
+/* ERRORS */
+ul.errorlist {
+    margin: 2px;
+    color: red;
+    font-weight: bolder;
+}
+
 /* DRINKS MENU AT TOP OF PAGE */
 
 div.drink {

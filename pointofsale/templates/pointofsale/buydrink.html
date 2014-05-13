@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
-<form action="{% url 'pos:buy_action' %}" method="post">{% csrf_token %}
+<form action="" method="post">{% csrf_token %}
 <div id="drinks">
     <input type="submit" value="Buy" id="buy" />
     
@@ -21,6 +21,9 @@
 </div>
 
 <div id="accounts">
+{{ form.non_field_errors }}
+{{ form.drink.errors }}
+{{ form.account.errors }}
 <table>
     <tr>
         <td></td>
@@ -46,5 +49,7 @@
 </div>
 
 </form>
+
+{{ debug }}
 
 {% endblock content%}
