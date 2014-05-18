@@ -1,0 +1,27 @@
+{% extends 'pointofsale/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    {{ block.super }}
+	<link href="{% static 'pointofsale/register.css' %}" rel="stylesheet" type="text/css" />
+{% endblock css %}
+
+{% block content %}
+
+{{ test }}
+
+<form action="" method="post">
+
+<table>
+{% for field in form %}
+<tr>
+    <td>{{ field.label_tag }}</td>
+    <td>{{ field }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<input type="submit" value="Register" />
+</form>
+
+{%endblock content %}
