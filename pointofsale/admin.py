@@ -24,12 +24,15 @@ class AccountAdmin(admin.ModelAdmin):
 		(None, {
 			'fields': ('user', 'credits', 'qr_code')
 		}),
+		('Registration information', {
+			'fields': ('address', 'city', 'iban'),
+		}),
 		('Statistics', {
 			'classes': ('collapse',),
 			'fields': ('get_drinks_bought', 'get_dinners_bought', 'get_credits_used', 'get_credits_left', 'get_spend_on_drinks', 'get_spend_on_dinner')
 		}),
 	)
-	list_display = ('__str__', 'credits', 'get_credits_used', 'qr_code')
+	list_display = ('__str__', 'credits', 'get_credits_used', 'qr_code', 'address', 'city', 'iban')
 
 class DrinkOrderAdmin(admin.ModelAdmin):
 	list_display = ('time', 'drink', 'account')

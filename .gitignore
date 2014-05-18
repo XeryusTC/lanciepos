@@ -4,3 +4,5 @@
 local_settings.py
 __pycache__
 *.sqlite3
+
+generated_forms/*.tex

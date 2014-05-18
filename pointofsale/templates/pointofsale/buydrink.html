@@ -1,11 +1,16 @@
 {% extends 'pointofsale/base.html' %}
 {% load staticfiles %}
 
+{% block css %}
+    {{ block.super }}
+	<link href="{% static 'pointofsale/buydrink.css' %}" rel="stylesheet" type="text/css" />
+{% endblock css %}
+
 {% block content %}
 <form action="" method="post">{% csrf_token %}
 <div id="drinks">
     <input type="submit" value="Buy" id="buy" />
-    
+
     {% for drink in form.drink %}
         <div class="drink">
             <label for="drink_{{ forloop.counter0 }}"> {{ drink.choice_label }}
@@ -17,7 +22,17 @@
             </label>{{ drink.tag }}
         </div>
     {% endfor %}
-    
+</div><div id="spacer">&nbsp;</div>
+
+<div id="useful">
+    <a href="{% url 'pos:register' %}">Register participant</a> | <a href="{% url 'pos:tools' %}">Tools</a>
+</div>
+
+<div id="log">
+    <div id="logheader">LOG</div>
+    {% for item in log %}
+        {{ item.time }} <br />{{ item.account }} - {{ item.drink }}<hr />
+    {% endfor %}
 </div>
 
 <div id="accounts">
@@ -43,7 +58,7 @@
                 <td class="number"><label for="account_{{ forloop.counter0 }}">{{ info.left }}</label></td>
             </tr>
         {% endif %}
-    {% endfor %}    
+    {% endfor %}
 {% endfor %}
 </table>
 </div>
