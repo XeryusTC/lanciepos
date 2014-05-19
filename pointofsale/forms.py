@@ -1,4 +1,4 @@
-import random, string, datetime
+import random, string, datetime, subprocess
 from django import forms
 from django.core.urlresolvers import reverse
 from pointofsale.models import Drink, Account, DrinkOrder
@@ -81,6 +81,8 @@ class RegisterParticipantForm(forms.Form):
                 fout.write(form.substitute(entryfee_dict))
 
             # TODO: generate the pdf files
+            subprocess.call(["pdflatex", "-output-directory=generated_forms", security_target])
+            subprocess.call(["pdflatex", "-output-directory=generated_forms", entryfee_target])
         return reverse("pos:finish_register", kwargs={'participant': u.pk})
 
 

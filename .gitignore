@@ -6,3 +6,5 @@ __pycache__
 *.sqlite3
 
 generated_forms/*.tex
+generated_forms/*.aux
+generated_forms/*.pdf
