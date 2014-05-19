@@ -81,8 +81,8 @@ class RegisterParticipantForm(forms.Form):
                 fout.write(form.substitute(entryfee_dict))
 
             # TODO: generate the pdf files
-            subprocess.call(["pdflatex", "-output-directory=generated_forms", security_target])
-            subprocess.call(["pdflatex", "-output-directory=generated_forms", entryfee_target])
+            subprocess.call(["pdflatex", "-output-directory=static/pointofsale", security_target])
+            subprocess.call(["pdflatex", "-output-directory=static/pointofsale", entryfee_target])
         return reverse("pos:finish_register", kwargs={'participant': u.pk})
 
 
