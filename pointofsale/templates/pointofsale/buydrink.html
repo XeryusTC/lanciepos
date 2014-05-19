@@ -22,22 +22,22 @@
             </label>{{ drink.tag }}
         </div>
     {% endfor %}
+    {{ form.drink.errors }}
 </div><div id="spacer">&nbsp;</div>
 
 <div id="useful">
-    <a href="{% url 'pos:register' %}">Register participant</a> | <a href="{% url 'pos:tools' %}">Tools</a>
+    <a href="{% url 'pos:register' %}">Register participant</a>
 </div>
 
 <div id="log">
     <div id="logheader">LOG</div>
+    {{ form.non_field_errors }}
     {% for item in log %}
         {{ item.time }} <br />{{ item.account }} - {{ item.drink }}<hr />
     {% endfor %}
 </div>
 
 <div id="accounts">
-{{ form.non_field_errors }}
-{{ form.drink.errors }}
 {{ form.account.errors }}
 <table>
     <tr>

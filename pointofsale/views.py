@@ -46,20 +46,14 @@ class BuyDrinkView(edit.FormView):
         return super(BuyDrinkView, self).form_valid(form)
 
 
-class ToolsView(edit.FormView):
-        template_name = "pointofsale/tools.html"
-        form_class = BuyDrinkForm
-        success_url = reverse_lazy("pos:tools")
-
-        #@method_decorator(login_required)
-        def dispatch(self, *args, **kwargs):
-            return super(ToolsView, self).dispatch(*args, **kwargs)
-
-
 class RegisterParticipantView(edit.FormView):
     template_name = "pointofsale/register.html"
     form_class = RegisterParticipantForm
     success_url = reverse_lazy("pos:finish_register")
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(RegisterParticipantView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(RegisterParticipantView, self).get_context_data(**kwargs)
@@ -71,9 +65,25 @@ class RegisterParticipantView(edit.FormView):
 
 
 class RegisterDoneView(base.TemplateView):
-    template_name = "pointofsale/register.html"
+    template_name = "pointofsale/register_done.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(RegisterDoneView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(RegisterDoneView, self).get_context_data(**kwargs)
+        context['entryfee_form'] = "pointofsale/" + kwargs['participant'] + "_entryfee.pdf"
+        context['security_form'] = "pointofsale/" + kwargs['participant'] + "_security.pdf"
+
+        context['account'] = User.objects.get(pk=kwargs['participant']).account
 
         return context
+
+
+@login_required
+def add_credits(request, participant):
+    u = User.objects.get(pk=participant)
+    u.account.credits += 5000
+    u.account.save()
+    return HttpResponseRedirect(reverse('pos:finish_register', kwargs={'participant': participant}))

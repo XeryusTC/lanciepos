@@ -7,5 +7,5 @@ urlpatterns = patterns('',
     url(r'^buydrink/$', views.BuyDrinkView.as_view(), name='buy_action'),
     url(r'^register/$', views.RegisterParticipantView.as_view(), name='register'),
     url(r'^register_done/(?P<participant>\d+)/$', views.RegisterDoneView.as_view(), name='finish_register'),
-    url(r'^moar/$', views.ToolsView.as_view(), name='tools'),
+    url(r'^add_credits/(?P<participant>\d+)/$', views.add_credits, name='add_credits'),
 )

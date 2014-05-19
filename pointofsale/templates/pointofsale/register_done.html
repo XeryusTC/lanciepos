@@ -1,0 +1,51 @@
+{% extends 'pointofsale/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    {{ block.super }}
+	<link href="{% static 'pointofsale/register.css' %}" rel="stylesheet" type="text/css" />
+{% endblock css %}
+
+{% block content %}
+
+<h1>Finish participant registration</h1>
+
+To finish the registration the participant needs to do the following things:
+<ol>
+    <li>Sign the rules form (<a href="{% static 'routing/rules.pdf' %}">Print</a>)</li>
+    <li>Sign the entry fee direct debit form (<a href="{% static entryfee_form %}">Print</a>)</li>
+    <li>Sign the bar security direct debit form (<a href="{% static security_form %}">Print</a>)</li>
+</ol>
+
+When the participant has signed these three documents you need to put them in their appropriate places in the (physical) folder(s).
+Then you can grant the participant credits by clicking <a href="{% url 'pos:add_credits' participant %}">this finely crafted link</a> (current credits {{ account.credits }}).
+
+<br /><br />
+<a href="{% url 'pos:register' %}">Register another participant</a> | <a href="{% url 'pos:buy_drink' %}">Back to buy screen</a>
+
+<h1>Participant information:</h1>
+<table>
+<tr>
+    <th>Name</th>
+    <td>{{ account.user.get_full_name }}</td>
+</tr>
+<tr>
+    <th>Email address</th>
+    <td>{{ account.user.email }}</td>
+</tr>
+<tr>
+    <th>Address</th>
+    <td>{{ account.address }}</td>
+</tr>
+<tr>
+    <th>City</th>
+    <td>{{ account.city }}</td>
+</tr>
+<tr>
+    <th>IBAN</th>
+    <td>{{ account.iban }}</td>
+</tr>
+</table>
+
+{% endblock content %}
+

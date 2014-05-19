@@ -16,6 +16,9 @@ class BuyDrinkForm(forms.Form):
 
     def clean(self):
         super(BuyDrinkForm, self).clean()
+        # see if all the fields are filled out
+        if not 'account' in self.cleaned_data or not 'drink' in self.cleaned_data:
+            raise forms.ValidationError("You must select a drink and a person before you can press the buy button")
 
         # Check if the account can afford the drink that it wants to buy, raise an error if this is not the case
         account = Account.objects.get(pk = self.cleaned_data['account'])
@@ -56,7 +59,7 @@ class RegisterParticipantForm(forms.Form):
         u.first_name = self.cleaned_data['first_name']
         u.last_name = self.cleaned_data['last_name']
         u.save()
-        # account
+        # create bar account
         a = Account(user=u, address=self.cleaned_data['address'], city=self.cleaned_data['city'], iban=self.cleaned_data['iban'])
         a.save()
 

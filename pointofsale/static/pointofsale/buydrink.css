@@ -41,6 +41,7 @@ body {
     width: 290px;
     bottom: 0px;
     padding-left: 3px;
+    overflow: auto;
 }
 
 #logheader {
@@ -126,4 +127,8 @@ td.name {
 td.number {
     text-align: right;
     width: 75px;
+}
+
+td.checkbox {
+    width: 10px;
 }

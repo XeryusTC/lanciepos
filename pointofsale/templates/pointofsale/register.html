@@ -8,6 +8,8 @@
 
 {% block content %}
 
+<a href="{% url 'pos:buy_drink' %}">Return to buy screen</a>
+
 <h1>Register new participant</h1>
 
 <form action="" method="post">{% csrf_token %}
@@ -15,7 +17,7 @@
 <table>
 {% for field in form %}
 <tr>
-    <td>{{ field.label_tag }}</td>
+    <th>{{ field.label_tag }}</th>
     <td>{{ field }}</td>
 </tr>
 {% endfor %}
