@@ -66,9 +66,9 @@ class RegisterParticipantForm(forms.Form):
         with open("templates/DirectDebitForm.tex", "r") as fin:
             # dictionaries holding static data for both forms
             data_dict = {'name': u.get_full_name(), 'address': self.cleaned_data['address'], 'city': self.cleaned_data['city'], 'iban': self.cleaned_data['iban'], 'email': self.cleaned_data['email']}
-            security_dict = {'description': "Security for drinks", 'amount': 50, 'date': datetime.date.today().isoformat()}
+            security_dict = {'description': "Security for drinks", 'amount': 50, 'date': datetime.date.today().isoformat(), 'id': u.username[:8] + '-sec'}
             security_dict.update(data_dict)
-            entryfee_dict = {'description': "I LAN No English", 'amount': self.cleaned_data['charge'], 'date': datetime.date.today().isoformat()}
+            entryfee_dict = {'description': "I LAN No English", 'amount': self.cleaned_data['charge'], 'date': datetime.date.today().isoformat(), 'id': u.username[:8] + '-entry'}
             entryfee_dict.update(data_dict)
 
             # Read the template
