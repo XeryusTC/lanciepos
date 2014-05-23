@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import base, edit
+from django.views.generic import base, edit, ListView
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -79,6 +79,14 @@ class RegisterDoneView(base.TemplateView):
         context['account'] = User.objects.get(pk=kwargs['participant']).account
 
         return context
+
+
+class OverviewView(ListView):
+    model = Account
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(OverviewView, self).dispatch(*args, **kwargs)
 
 
 @login_required

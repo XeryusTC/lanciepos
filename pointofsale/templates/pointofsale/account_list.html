@@ -1,0 +1,34 @@
+{% extends 'pointofsale/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    {{ block.super }}
+	<link href="{% static 'pointofsale/account.css' %}" rel="stylesheet" type="text/css" />
+{% endblock css %}
+
+{% block content %}
+
+<a href="{% url 'pos:buy_drink' %}">Return to buy screen</a><br /><br />
+
+<table>
+<tr>
+    <th>Name</th>
+    <th>&#8359; total</th>
+    <th>&#8359; spend</th>
+    <th>&#8359; left</th>
+    <th>Drinks bought</th>
+    <td></td>
+</tr>
+{% for account in object_list %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+        <td>{{ account.user.get_full_name }}</td>
+        <td>{{ account.credits }}</td>
+        <td>{{ account.get_credits_used }}</td>
+        <td>{{ account.get_credits_left }}</td>
+        <td>{{ account.get_drinks_bought }}</td>
+        <td><a href="{% url 'pos:finish_register' account.pk %}">Details</a></td>
+    </tr>
+{% endfor %}
+</table>
+
+{%endblock content %}

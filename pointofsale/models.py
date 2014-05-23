@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 class Drink(models.Model):
 	name = models.CharField(max_length=32)
@@ -77,6 +78,9 @@ class Account(models.Model):
 	# allow buying stuff
 	drinks_bought = models.ManyToManyField(Drink, through='DrinkOrder')
 	dinners_bought = models.ManyToManyField(Dinner, through='DinnerOrder')
+
+	def get_absolute_url(self):
+		return reverse('pos:finish_register', kwargs={'participant': self.pk})
 
 	def get_drinks_bought(self):
 		return self.drinkorder_set.count()
