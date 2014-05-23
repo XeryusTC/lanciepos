@@ -54,7 +54,7 @@ class RegisterParticipantForm(forms.Form):
 
     def register_participant(self):
         # create user
-        username = ''.join(random.sample(string.ascii_letters + string.digits, 16))
+        username = self.cleaned_data['last_name'][:8] + ''.join(random.sample(string.ascii_letters + string.digits, 8))
         u = User.objects.create_user(username, self.cleaned_data['email'], username) # Use the username as the password
         u.first_name = self.cleaned_data['first_name']
         u.last_name = self.cleaned_data['last_name']
