@@ -26,7 +26,7 @@
         <td>{{ account.get_credits_used }}</td>
         <td>{{ account.get_credits_left }}</td>
         <td>{{ account.get_drinks_bought }}</td>
-        <td><a href="{% url 'pos:finish_register' account.user.pk %}">Details</a></td>
+        <td><a href="{% url 'pos:finish_register' account.pk %}">Details</a></td>
     </tr>
 {% endfor %}
 </table>
