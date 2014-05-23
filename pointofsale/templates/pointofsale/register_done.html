@@ -8,6 +8,8 @@
 
 {% block content %}
 
+<a href="{% url 'pos:register' %}">Register another participant</a> | <a href="{% url 'pos:buy_drink' %}">Back to buy screen</a> | <a href="{%url 'pos:overview' %}">Back to participant overview</a>
+
 <h1>Finish participant registration</h1>
 
 To finish the registration the participant needs to do the following things:
@@ -19,9 +21,6 @@ To finish the registration the participant needs to do the following things:
 
 When the participant has signed these three documents you need to put them in their appropriate places in the (physical) folder(s).
 Then you can grant the participant credits by clicking <a href="{% url 'pos:add_credits' participant %}">this finely crafted link</a> (current credits {{ account.credits }}).
-
-<br /><br />
-<a href="{% url 'pos:register' %}">Register another participant</a> | <a href="{% url 'pos:buy_drink' %}">Back to buy screen</a>
 
 <h1>Participant information:</h1>
 <table>
