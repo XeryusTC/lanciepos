@@ -76,7 +76,7 @@ class RegisterDoneView(base.TemplateView):
         context['entryfee_form'] = "pointofsale/" + kwargs['participant'] + "_entryfee.pdf"
         context['security_form'] = "pointofsale/" + kwargs['participant'] + "_security.pdf"
 
-        context['account'] = User.objects.get(pk=kwargs['participant']).account
+        context['account'] = Account.objects.get(pk=kwargs['participant'])
 
         return context
 
@@ -91,7 +91,7 @@ class OverviewView(ListView):
 
 @login_required
 def add_credits(request, participant):
-    u = User.objects.get(pk=participant)
-    u.account.credits += 5000
-    u.account.save()
+    a = Account.objects.get(pk=participant)
+    a.credits += 5000
+    a.save()
     return HttpResponseRedirect(reverse('pos:finish_register', kwargs={'participant': participant}))
