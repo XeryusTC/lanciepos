@@ -73,8 +73,11 @@ class RegisterDoneView(base.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(RegisterDoneView, self).get_context_data(**kwargs)
-        context['entryfee_form'] = "pointofsale/" + kwargs['participant'] + "_entryfee.pdf"
-        context['security_form'] = "pointofsale/" + kwargs['participant'] + "_security.pdf"
+        proper_id = int(kwargs['participant'])
+        if proper_id < 17:
+                proper_id += 1
+        context['entryfee_form'] = "pointofsale/" + str(proper_id) + "_entryfee.pdf"
+        context['security_form'] = "pointofsale/" + str(proper_id) + "_security.pdf"
 
         context['account'] = Account.objects.get(pk=kwargs['participant'])
 

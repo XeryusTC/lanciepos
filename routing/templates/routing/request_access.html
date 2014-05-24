@@ -1,6 +1,9 @@
 {% extends 'routing/base.html' %}
 
 {% block content %}
+<h1><a href="{% url 'pos:buy_action' %}">GO TO THE BAR PAGE</a></h1>
+
+<!--
 <h1>Request internet access</h1>
 
 To get internet access you need to do the following things:
@@ -13,5 +16,5 @@ To get internet access you need to do the following things:
 	{% csrf_token %}
 	{{ form.as_p }}
 	<input type="submit" value="Submit" />
-</form>
+</form>-->
 {% endblock content %}
