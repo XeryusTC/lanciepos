@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^register_done/(?P<participant>\d+)/$', views.RegisterDoneView.as_view(), name='finish_register'),
     url(r'^add_credits/(?P<participant>\d+)/$', views.add_credits, name='add_credits'),
     url(r'^accounts/$', views.OverviewView.as_view(), name='overview'),
+    url(r'^generate_csv/$', views.generate_csv, name='generate_csv'),
 )

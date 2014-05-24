@@ -4,13 +4,15 @@ from django.core.urlresolvers import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.conf import settings
 
 from pointofsale.forms import BuyDrinkForm, RegisterParticipantForm
 from pointofsale.models import Drink, Account, DrinkOrder
 
 from django.contrib.auth.models import User
+
+import datetime, string, subprocess
 
 # Create your views here.
 class BuyDrinkView(edit.FormView):
@@ -98,3 +100,35 @@ def add_credits(request, participant):
     a.credits += 5000
     a.save()
     return HttpResponseRedirect(reverse('pos:finish_register', kwargs={'participant': participant}))
+
+@login_required
+def generate_csv(request):
+    csv_entryfee = ['''"id", "description", "committee", "amount", "name", "address", "place of residence", iban", "email", "date"''']
+    csv_drinks = ['''"id", "description", "committee", "amount", "name", "address", "place of residence", "iban", "email", "date"''']
+    csv_row = '''{id}, "{desc}", "{committee}", "{amount}", "{name}", "{address}", "{city}", {iban}, "{email}", "{date}"'''
+    for a in Account.objects.all():
+        # add data to csv
+        csv_entryfee.append(csv_row.format(id=a.user.pk, desc="I LAN no English entry", committee="LanCie", amount="",
+            name=a.user.get_full_name(), address=a.address, city=a.city, iban=a.iban, email=a.user.email,
+            date=datetime.date.today().isoformat()))
+        csv_drinks.append(csv_row.format(id=a.user.pk, desc="I LAN no English drinks", committee="LanCie", amount=a.get_credits_used()/100.0,
+            name=a.user.get_full_name(), address=a.address, city=a.city, iban=a.iban, email=a.user.email,
+            date=datetime.date.today().isoformat()))
+
+        # generate drink direct debit forms
+        with open("templates/DirectDebitForm.tex", "r") as ftempl:
+            template = ftempl.read()
+            form = string.Template(template)
+            target = "generated_forms/{name}_drinks.tex".format(name=a.pk)
+            with open(target, 'w') as fout:
+                fout.write(form.substitute({'description': "I LAN no English drinks", 'amount': a.get_credits_used()/100.0,
+                    'date':datetime.date.today().isoformat(), 'id': a.user.pk, 'name': a.user.get_full_name(), 'address': a.address,
+                    'city': a.city, 'iban': a.iban, 'email': a.user.email}))
+                subprocess.call(["pdflatex", "-output-directory=static/pointofsale", target])
+
+    # write csv files
+    with open("entryfee.csv", "w") as fentry:
+        fentry.write('\n'.join(csv_entryfee))
+    with open("drinks.csv", "w") as fdrink:
+        fdrink.write('\n'.join(csv_drinks))
+    return HttpResponse("Done generating...<br /><br />{0}<br /><br />{1}".format('<br/>'.join(csv_entryfee), '<br />'.join(csv_drinks)));
