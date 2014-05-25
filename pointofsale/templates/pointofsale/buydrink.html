@@ -53,10 +53,10 @@
         {% if key|lower == account.choice_label|lower %}
             <tr class="user {% cycle 'row1' 'row2' %}">
                 <td class="checkbox">{{ account.tag }}</td>
-                <td class="name"><label for="account_{{ forloop.counter0 }}">{{ info.name }}</label></td>
-                <td class="number"><label for="account_{{ forloop.counter0 }}">{{ info.credits }}</label></td>
-                <td class="number"><label for="account_{{ forloop.counter0 }}">{{ info.used }}</label></td>
-                <td class="number"><label for="account_{{ forloop.counter0 }}">{{ info.left }}</label></td>
+                <td class="name"><label for="account_{{ forloop.counter1 }}">{{ info.name }}</label></td>
+                <td class="number"><label for="account_{{ forloop.counter1 }}">{{ info.credits }}</label></td>
+                <td class="number"><label for="account_{{ forloop.counter1 }}">{{ info.used }}</label></td>
+                <td class="number"><label for="account_{{ forloop.counter1 }}">{{ info.left }}</label></td>
             </tr>
         {% endif %}
     {% endfor %}

@@ -124,7 +124,7 @@ def generate_csv(request):
                 fout.write(form.substitute({'description': "I LAN no English drinks", 'amount': a.get_credits_used()/100.0,
                     'date':datetime.date.today().isoformat(), 'id': a.user.pk, 'name': a.user.get_full_name(), 'address': a.address,
                     'city': a.city, 'iban': a.iban, 'email': a.user.email}))
-                subprocess.call(["pdflatex", "-output-directory=static/pointofsale", target])
+                #subprocess.call(["pdflatex", "-output-directory=static/pointofsale", target])
 
     # write csv files
     with open("entryfee.csv", "w") as fentry:
